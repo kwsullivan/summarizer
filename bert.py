@@ -76,6 +76,29 @@ for curr in data_files:
 doc = cat_documents(data_path, data_files)
 ref = cat_documents(ref_path, ref_files)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
 metric = 'rougeL'
 sent_id = 0
