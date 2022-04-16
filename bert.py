@@ -4,6 +4,11 @@ import spacy
 # from transformers import AutoTokenizer, AutoModel
 from rouge_score import rouge_scorer
 import os
+import csv
+import torch
+from torch.utils.data import Dataset, DataLoader
+import pandas as pd
+import numpy as np
 
 # tokenize text as required by BERT based models
 def get_tokens(text, tokenizer):
@@ -52,84 +57,95 @@ class SentScore:
 		self.ref = ref
 		self.score = score
 
+
+class DocumentDataset(Dataset):
+	def __init__(self, csv_file):
+		self.docs = pd.read_csv(csv_file)
+	
+	def __len__(self):
+		return (len(self.csv_file) - 1)
+
+	def __getitem__(self, idx):
+		if torch.is_tensor(idx):
+			idx = idx.tolist()
+		doc = open(self.docs.iloc[idx, 0])
+		ref = open(self.docs.iloc[idx, 1])
+		data = {'sent_ids': sent_ids, 'doc_ids': doc_ids, 'sent_mask': sent_mask, 'doc_mask': doc_mask, 'targets': targets}
+		return data
+
+def get_targets(doc, ref, threshold):
+	targets = np.array()
+	scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
+	metric = 'rougeL'
+	scores = []
+	sent_id = 0
+	for sent in doc:
+		target = 0
+		max_score = 0
+		for r in ref:
+			score = scorer.score(sent, r)[metric].fmeasure
+			if score > max_score:
+				max_score = score
+		if max_score >= threshold:
+			target = 1
+		targets.append(target)
+	return targets
+
+
+
 # sentence_model_name = "sentence-transformers/paraphrase-MiniLM-L3-v2"
 # tokenizer = AutoTokenizer.from_pretrained(sentence_model_name)
 nlp = spacy.load('en_core_web_lg')
 
-data_path = './datasets/DUC2004_Summarization_Documents/duc2004_testdata/tasks1and2/duc2004_tasks1and2_docs/docs/1001/'
-data_files = ['D1.txt','D2.txt','D3.txt','D4.txt','D5.txt','D6.txt','D7.txt','D8.txt','D9.txt','D10.txt']
-
-ref_path = './datasets/reference'
-ref_files = ['Task1001_reference1.txt','Task1001_reference2.txt','Task1001_reference3.txt','Task1001_reference4.txt']
-
+csv_name = './datasets/DUC_dataset.csv'
 
 # summary1 = 'E:/ts/datasets/reference/Task1_reference2.txt'
 # data = open(data_path, 'r')
 # summary = open(summary1, 'r')
-raw_doc = ''
-for curr in data_files:
-	file = os.path.join(data_path, curr)
-	data = open(file, 'r')
-	data = format_document(data)
-	raw_doc += data
 
-doc = cat_documents(data_path, data_files)
-ref = cat_documents(ref_path, ref_files)
+dlist = []
+with open(csv_name, newline='') as csvfile:
+	reader = csv.reader(csvfile)
+	next(csvfile)
+	for row in reader:
+		doc_name, ref_name = row
+		doc = Files(doc_name, ref_name)
+		dlist.append(doc)
+for d in dlist:
+	print(d.doc_name)
+	print(d.ref_name)
 
+# scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
+# metric = 'rougeL'
+# sent_id = 0
 
+# scores = []
+# best_ref = ''
+# for sent in doc:
+# 	max_score = 0
+# 	ref_id = 0
+# 	best_ref_id = 0
+# 	for r in ref:
+# 		score = scorer.score(sent, r)[metric].fmeasure
+# 		# 
+# 		if best_ref == '':
+# 			best_ref_id = ref_id
+# 			best_ref = ref
+# 		if score > max_score:
+# 			max_score = score
+# 			best_ref_id = ref_id
+# 			best_ref = r
+# 		ref_id += 1
+# 	Sent = SentScore(sent_id, sent, best_ref_id, best_ref, round(max_score, 4))
+# 	scores.append(Sent)
+# 	sent_id += 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
-metric = 'rougeL'
-sent_id = 0
-
-scores = []
-best_ref = ''
-for sent in doc:
-	max_score = 0
-	ref_id = 0
-	best_ref_id = 0
-	for r in ref:
-		score = scorer.score(sent, r)[metric].fmeasure
-		# 
-		if best_ref == '':
-			best_ref_id = ref_id
-			best_ref = ref
-		if score > max_score:
-			max_score = score
-			best_ref_id = ref_id
-			best_ref = r
-		ref_id += 1
-	Sent = SentScore(sent_id, sent, best_ref_id, best_ref, round(max_score, 4))
-	scores.append(Sent)
-	sent_id += 1
-
-scores.sort(key=lambda x: x.score, reverse=True)
-for s in scores[0:5]:
-	print(f'{s.sent_id}: {s.sent}')
-	print(f'{s.ref_id}: {s.ref}')
-	print('------------------------')
-	printg(s.score)
+# scores.sort(key=lambda x: x.score, reverse=True)
+# for s in scores[0:5]:
+# 	print(f'{s.sent_id}: {s.sent}')
+# 	print(f'{s.ref_id}: {s.ref}')
+# 	print('------------------------')
+# 	printg(s.score)
 
 
 # model = 'The quick brown fox jumps over the lazy dog.'
