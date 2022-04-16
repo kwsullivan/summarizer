@@ -1,0 +1,121 @@
+-----------
+Document 1001
+
+Average:                0.2114
+Median:                 0.2046
+
+Range of Top 10:        0.3704-0.4590
+Top 10 Average:         0.4026
+Top 10 Median:          0.3913
+-----------
+-----------
+Document 1008
+
+Average:                0.2015
+Median:                 0.1835
+
+Range of Top 10:        0.4865-0.6977
+Top 10 Average:         0.6137
+Top 10 Median:          0.6486
+-----------
+-----------
+Document 1009
+
+Average:                0.2315
+Median:                 0.2174
+
+Range of Top 10:        0.3922-0.4815
+Top 10 Average:         0.4481
+Top 10 Median:          0.4444
+-----------
+-----------
+Document 1013
+
+Average:                0.1895
+Median:                 0.18414999999999998
+
+Range of Top 10:        0.3415-0.4923
+Top 10 Average:         0.3995
+Top 10 Median:          0.3750
+-----------
+-----------
+Document 1022
+
+Average:                0.2057
+Median:                 0.1905
+
+Range of Top 10:        0.4444-0.5517
+Top 10 Average:         0.4770
+Top 10 Median:          0.4828
+-----------
+-----------
+Document 1026
+
+Average:                0.1787
+Median:                 0.1818
+
+Range of Top 10:        0.3333-0.4889
+Top 10 Average:         0.4071
+Top 10 Median:          0.4286
+-----------
+-----------
+Document 1031
+
+Average:                0.1937
+Median:                 0.1875
+
+Range of Top 10:        0.3721-0.6400
+Top 10 Average:         0.4534
+Top 10 Median:          0.3860
+-----------
+-----------
+Document 1032
+
+Average:                0.24
+Median:                 0.2188
+
+Range of Top 10:        0.3871-0.7407
+Top 10 Average:         0.5294
+Top 10 Median:          0.5000
+-----------
+-----------
+Document 1033
+
+Average:                0.1962
+Median:                 0.1928
+
+Range of Top 10:        0.3415-0.4516
+Top 10 Average:         0.3873
+Top 10 Median:          0.3784
+-----------
+-----------
+Document 1038
+
+Average:                0.2413
+Median:                 0.2143
+
+Range of Top 10:        0.4500-0.6667
+Top 10 Average:         0.5538
+Top 10 Median:          0.5532
+-----------
+-----------
+Document 1043
+
+Average:                0.2381
+Median:                 0.2143
+
+Range of Top 10:        0.3750-0.6087
+Top 10 Average:         0.4749
+Top 10 Median:          0.4500
+-----------
+-----------
+Document 1050
+
+Average:                0.1977
+Median:                 0.189
+
+Range of Top 10:        0.3175-0.6364
+Top 10 Average:         0.4056
+Top 10 Median:          0.3704
+
+AVERAGE OF ALL: 0.4627
