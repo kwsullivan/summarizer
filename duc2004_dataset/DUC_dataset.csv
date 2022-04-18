@@ -1,0 +1,13 @@
+doc,ref
+./duc2004_dataset/docs/1001_Document.txt,./duc2004_dataset/refs/1001_Reference.txt
+./duc2004_dataset/docs/1008_Document.txt,./duc2004_dataset/refs/1008_Reference.txt
+./duc2004_dataset/docs/1009_Document.txt,./duc2004_dataset/refs/1009_Reference.txt
+./duc2004_dataset/docs/1013_Document.txt,./duc2004_dataset/refs/1013_Reference.txt
+./duc2004_dataset/docs/1022_Document.txt,./duc2004_dataset/refs/1022_Reference.txt
+./duc2004_dataset/docs/1026_Document.txt,./duc2004_dataset/refs/1026_Reference.txt
+./duc2004_dataset/docs/1031_Document.txt,./duc2004_dataset/refs/1031_Reference.txt
+./duc2004_dataset/docs/1032_Document.txt,./duc2004_dataset/refs/1032_Reference.txt
+./duc2004_dataset/docs/1033_Document.txt,./duc2004_dataset/refs/1033_Reference.txt
+./duc2004_dataset/docs/1038_Document.txt,./duc2004_dataset/refs/1038_Reference.txt
+./duc2004_dataset/docs/1043_Document.txt,./duc2004_dataset/refs/1043_Reference.txt
+./duc2004_dataset/docs/1050_Document.txt,./duc2004_dataset/refs/1050_Reference.txt
